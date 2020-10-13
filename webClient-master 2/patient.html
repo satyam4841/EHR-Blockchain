@@ -1,17 +1,21 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
-        <title>Patient's portal</title>
+        <title>Dashboard</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <style>
             .cont-2{
                 display: none;
             }
             .navbar{
-                background: #5b0cf0;
+                background: #2adedb;
                 color: #fff;
             }
             .navbar li a,.navbar .navbar-brand{
@@ -60,7 +64,7 @@
             .data{
                 border-radius: 10px;
                 margin-top: 20px;
-                background: skyblue;
+                background: #2adedb;
                 color: #fff;
                 padding: 50px;
                 box-shadow: 0 5px 20px rgba(0,0,0,.7);
@@ -70,13 +74,13 @@
     <body>
        <nav class="navbar navbar-expand-lg">
            <div class="container">
-            <a class="navbar-brand" href="#">EHR System</a>
+            <a class="navbar-brand" href="#">EHR Portal</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar">
                 <span class="navbar-toggler-icon" style="color: #fff">Menu</span>
             </button>
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="login.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="choice.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
                 </ul>
             </div>
@@ -84,19 +88,11 @@
         </nav>
         
         <div class="container cont-2">
-            <h1 class="text-center">Patient's record</h1>
+            <h1 class="text-center">Dashboard</h1>
             <div class="data" style="max-width: 800px; margin: 0 auto">
                 <h2 class="name"></h2>
             </div>
         </div>
-        
-        
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         
         <script type="text/javascript">
             var query;

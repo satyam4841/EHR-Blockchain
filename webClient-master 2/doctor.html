@@ -1,11 +1,15 @@
-<!doctype html>
+<!DOCTYPE html>
 <html>
 	<head>
-        <title>Doctor's portal</title>
+        <title>Dashboard</title>
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
+        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
+        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
         
+        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
         <style>
             body{
                 background: #eee;
@@ -14,7 +18,7 @@
                 display: none;
             }
             .navbar{
-                background: #5b0cf0;
+                background: #2adedb;
                 color: #fff;
             }
             .navbar li a,.navbar .navbar-brand{
@@ -117,13 +121,13 @@
     <body>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-            <a class="navbar-brand" href="#">EHR System</a>
+            <a class="navbar-brand" href="#">EHR Portal</a>
             <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar">
                 <span class="navbar-toggler-icon" style="color: #fff">Menu</span>
             </button>
             <div class="collapse navbar-collapse" id="mainNavbar">
                 <ul class="navbar-nav ml-auto">
-                    <li class="nav-item"><a class="nav-link" href="login.html">Home</a></li>
+                    <li class="nav-item"><a class="nav-link" href="choice.html">Home</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.html">Logout</a></li>
                 </ul>
             </div>
@@ -132,7 +136,7 @@
         
         
         <div class="container cont-1">
-            <h1 class="text-center">Doctor's Portal</h1>
+            <h1 class="text-center">Dashboard</h1>
             
             <div class="d-flex justify-content-center align-items-center">
                 <button class="read btn btn-danger">Read patient's record</button>
@@ -141,7 +145,7 @@
         </div>
         <div class="container cont-2">
             <div class="input">
-                <h1 class="text-center">Read Patient's record</h1>
+                <h1 class="text-center">Read Records</h1>
                 <form class="d-flex justify-content-center">
                     <input type="text" placeholder="Enter patient's Id" id="readId" style="padding: 5px"><br>
                     <button class="btn btn-success" style="margin-left: 10px">Get info</button>
@@ -156,7 +160,7 @@
         </div>
         <div class="container cont-3">
             <div class="write-content">
-                <h1 class="text-center">Write patients record</h1>
+                <h1 class="text-center">Write a record</h1>
                 <form>
                     <div class="patientId">
                         <input type="text" placeholder="Enter patient's Id" id="patientId">
@@ -188,18 +192,16 @@
                             </div>
                         </div>
                     </div>
-                    <button class="btn btn-primary">Submit</button>
                 </form>
+                <label for="myfile">Report Attachments, if any:</label>
+                    <input type="image" id="report" name="report"> 
+                 <button class="btn btn-primary">Submit</button>
             </div>
         </div>
+
         
         
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.6/umd/popper.min.js" integrity="sha384-wHAiFfRlMFy6i5SRaxvfOCifBUQy1xHdJ/yoi7FRNXMRBu5WHdZYu1hA6ZOblgut" crossorigin="anonymous"></script>
-        <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/js/bootstrap.min.js" integrity="sha384-B0UglyR+jN6CkvvICOB2joaf5I4l3gm9GU6Hc1og6Ls7i6U/mkkaduKaBhlAXv9k" crossorigin="anonymous"></script>
-        
-        <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
+
         
         <script type="text/javascript">
             $('.read').on('click',function(e){
@@ -247,6 +249,9 @@
                 var q5=$('#quan5').val();
                 var medi= [];
                 var quan=[];
+                var report = [];
+                var photo =$('#report').val();
+                report.push(photo);
                 if(m1!=null&&q1!=null&&m1!=""&&q1!=""){
                     medi.push(m1);
                     quan.push(q1);
@@ -268,6 +273,7 @@
                     quan.push(q5);
                 }
                 console.log(query);
+                alert('Record has been submitted successfully!')
                 $.ajax({
                     method: 'POST',
                     url: 'http://localhost:3000/api/org.ehr.mtx.CreateMedicalRecord/',
@@ -277,9 +283,11 @@
                       "doctor": "org.ehr.mtx.Doctor#"+query,
                       "diagnosis": diagnosis,
                       "medicine": medi,
-                      "quantity": quan
+                      "quantity": quan,
+                      "files": report
                     }
                 })
+                window.location.href = "choice.html"
             })
         </script>
         

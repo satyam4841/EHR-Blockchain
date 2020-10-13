@@ -13,7 +13,7 @@
  */
 
 /**
- * Electronic Health Record system network schema.
+ * Electronic Health Record model using hyperledger 
  */
 namespace org.ehr.mtx
 

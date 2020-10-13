@@ -16,9 +16,6 @@
 
 /**
  * Function to handle a transaction to create a new medical record and add it to the corresponding patient's medical file.
- * @param {org.ehr.mtx.CreateMedicalRecord} recordData - Transaction to create a new record.
- * @transaction
- * NOTE : recordData is an object of type CreateMedicalRecord
  */
 
 async function CreateMedicalRecord(recordData) {

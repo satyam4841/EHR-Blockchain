@@ -21,13 +21,17 @@
       
       <style>
           .cont{
-              display: none;
-          }
-          .cont{
-              max-width: 600px;
+              max-width: 700px;
               margin: 20px auto;
-              background: #eee;
+              background: #ddd;
           }
+          .center{
+          margin: 0;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          -ms-transform: translate(-50%, -50%);
+          transform: translate(-50%, -50%);
       </style>
     <script type="text/javascript">
         var displayName,email,emailVerified,photoURL,uid,phoneNumber,providerData;
@@ -89,15 +93,18 @@
                     var usertype=$('select').val();
                     var user = firebase.auth().currentUser;
                     var uid=user.uid;
-                     firebase.database().ref('users/').child(uid).set({
-                        firstName: displayName,
-                         identity: usertype,
-                         lastName: displayName,
-                         email: email
-                      });
                      if(usertype=="Doctor"){
                         console.log(displayName+email);
-                        $.ajax({
+                        var docID = $('input').val();
+                        if(docID == "1234567")
+                        {
+                            firebase.database().ref('users/').child(uid).set({
+                            firstName: displayName,
+                            identity: usertype,
+                            lastName: displayName,
+                            email: email
+                            });
+                            $.ajax({
                             method: 'POST',
                             url: 'http://localhost:3000/api/org.ehr.mtx.Doctor',
                             data: {
@@ -111,8 +118,19 @@
                                 console.log('successfulll');
                             }
                         });
+                          alert('Data submitted successfully!');
+                        }
+                        else{
+                          alert('Please enter a valid Doctor ID');
+                        }
                     }
                 else{
+                        firebase.database().ref('users/').child(uid).set({
+                        firstName: displayName,
+                        identity: usertype,
+                        lastName: displayName,
+                        email: email
+                        });
                         console.log(displayName+email);
                         $.ajax({
                             method: 'POST',
@@ -177,7 +195,7 @@
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
       <style>
             .navbar{
-                background: #5b0cf0;
+                background: #2adedb;
                 color: #fff;
             }
             .navbar li a,.navbar .navbar-brand{
@@ -191,7 +209,7 @@
     <body>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
-                <a class="navbar-brand" href="#">EHR System</a>
+                <a class="navbar-brand" href="#">EHR Portal</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#mainNavbar">
                     <span class="navbar-toggler-icon" style="color: #fff">Menu</span>
                 </button>
@@ -206,32 +224,38 @@
         
         <div class="container">
             <div class="cont">
-                <h3 class="text-center">User details:</h3>  
-                <p>You want to use the portal as: </p>
+                <h4 class="text-center">Choice of User</h4>  
+                <p>You want to use the portal as: 
                 <form>
                      <select name="usertype" id = "usertype"> 
-                        <option value="Doctor">Doctor</option>
-                        <option value="Patient">Patient</option>
+                          <option value="Doctor">Doctor</option>
+                          <option value="Patient">Patient</option>
                      </select>
-                    <br><br>
-                        <script type="text/javascript">
-          $("#usertype").change(function () {
-          var cases = $( "#usertype option:selected" ).val();
-          if(cases=="Doctor")
-          {
-             $("#Doctor").show();
-          }
-          else
-          {
-             $("#Doctor").hide();  
-          }
-          });
-    </script>
-                    <button class="btn btn-success">Submit</button>                  
+                </p>
+              <script type="text/javascript">
+              $("#usertype").change(function () {
+              var cases = $( "#usertype option:selected" ).val();
+              if(cases=="Doctor")
+              {
+                 $("#Doctor").show();
+              }
+              else
+              {
+                 $("#Doctor").hide();  
+              }
+              });
+              </script>
+                
                 <div class ="Doctor" id = "Doctor">
-                <p> Please enter your Doctor ID : </p>
+                <p> Please enter your Doctor ID : 
                   <input type="number" placeholder="DOCID" id="docID">
+                </p>
               </div>
+                  <p></p>
+                    <div class="center">
+                    <button class="btn btn-success">Submit</button> 
+              </div>
+                  <p></p>
                 </form>
 
 
