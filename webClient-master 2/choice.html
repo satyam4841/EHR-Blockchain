@@ -131,7 +131,7 @@
                     }
                 })
             
-            $('.butn').on('click',function(e){
+            /*$('.butn').on('click',function(e){
                 e.preventDefault();
                     var usertype=$('select').val();
                 if(usertype=="Doctor"){
@@ -168,10 +168,12 @@
                             }
                         });
                     }
-            }); 
+            }); */
             
             })
     </script>
+
+
       <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.2.1/css/bootstrap.min.css" integrity="sha384-GJzZqFGwb1QTTN6wy59ffF1BuGJpLSa9DkKMp0DgiMDm4iYMj70gZWKYbI706tWS" crossorigin="anonymous">
       <style>
             .navbar{
@@ -185,7 +187,7 @@
               padding: 20px;
           }
         </style>
-	</head>
+  </head>
     <body>
         <nav class="navbar navbar-expand-lg">
             <div class="container">
@@ -204,24 +206,37 @@
         
         <div class="container">
             <div class="cont">
-                <h3 class="text-center">User details:</h3>
-                <div id="account-details"> 
-                </div>
-                <p>Are you doctor or patient?</p>
+                <h3 class="text-center">User details:</h3>  
+                <p>You want to use the portal as: </p>
                 <form>
-                     <select name="usertype"> 
-                        <option value="Select">Select</option>
+                     <select name="usertype" id = "usertype"> 
                         <option value="Doctor">Doctor</option>
                         <option value="Patient">Patient</option>
                      </select>
                     <br><br>
-                    <button class="btn btn-success">Submit</button>
+                        <script type="text/javascript">
+          $("#usertype").change(function () {
+          var cases = $( "#usertype option:selected" ).val();
+          if(cases=="Doctor")
+          {
+             $("#Doctor").show();
+          }
+          else
+          {
+             $("#Doctor").hide();  
+          }
+          });
+    </script>
+                    <button class="btn btn-success">Submit</button>                  
+                <div class ="Doctor" id = "Doctor">
+                <p> Please enter your Doctor ID : </p>
+                  <input type="number" placeholder="DOCID" id="docID">
+              </div>
                 </form>
-                <button class="butn">Ajax</button>
+
+
             </div>
-        </div>
-        
-        
+        </div>      
         
         
         <script src="https://code.jquery.com/jquery-3.3.1.js"></script>
