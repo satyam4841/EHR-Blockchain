@@ -270,11 +270,11 @@
                 console.log(query);
                 $.ajax({
                     method: 'POST',
-                    url: 'http://localhost:3000/api/org.ehr.hackathon.CreateMedicalRecord/',
+                    url: 'http://localhost:3000/api/org.ehr.mtx.CreateMedicalRecord/',
                     data: {
-                      "$class": "org.ehr.hackathon.CreateMedicalRecord",
-                      "patient": "org.ehr.hackathon.Patient#"+patientId,
-                      "doctor": "org.ehr.hackathon.Doctor#"+query,
+                      "$class": "org.ehr.mtx.CreateMedicalRecord",
+                      "patient": "org.ehr.mtx.Patient#"+patientId,
+                      "doctor": "org.ehr.mtx.Doctor#"+query,
                       "diagnosis": diagnosis,
                       "medicine": medi,
                       "quantity": quan
@@ -292,7 +292,7 @@
                 var id=$('#readId').val();
                 $.ajax({
                         method: 'GET',
-                        url: 'http://localhost:3000/api/org.ehr.hackathon.Patient/'+id,
+                        url: 'http://localhost:3000/api/org.ehr.mtx.Patient/'+id,
                         success: function(data){
                              var name=data.firstName+' '+data.lastName;
                             $('.cont-2 .data .name').text("Name: "+name);

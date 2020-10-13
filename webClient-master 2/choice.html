@@ -95,6 +95,40 @@
                          lastName: displayName,
                          email: email
                       });
+                     if(usertype=="Doctor"){
+                        console.log(displayName+email);
+                        $.ajax({
+                            method: 'POST',
+                            url: 'http://localhost:3000/api/org.ehr.mtx.Doctor',
+                            data: {
+                              "$class": "org.ehr.mtx.Doctor",
+                              "doctorId": email,
+                              "firstName": displayName,
+                              "lastName": " ", 
+                              "patRec":[],
+                            },
+                            success: function(){
+                                console.log('successfulll');
+                            }
+                        });
+                    }
+                else{
+                        console.log(displayName+email);
+                        $.ajax({
+                            method: 'POST',
+                            url: 'http://localhost:3000/api/org.ehr.mtx.Patient',
+                            data: {
+                              "$class": "org.ehr.mtx.Patient",
+                              "patientId": email,
+                              "firstName": displayName,
+                              "lastName": " ",
+                              "medRec": []
+                            },
+                            success: function(){
+                                console.log('Data of patient ported to Blockchain successfully');
+                            }
+                        });
+                    }
                 })
             
             $('.butn').on('click',function(e){
@@ -104,19 +138,37 @@
                         console.log(displayName+email);
                         $.ajax({
                             method: 'POST',
-                            url: 'http://localhost:3000/api/org.ehr.hackathon.Doctor',
+                            url: 'http://localhost:3000/api/org.ehr.mtx.Doctor',
                             data: {
-                              "$class": "org.ehr.hackathon.Doctor",
+                              "$class": "org.ehr.mtx.Doctor",
                               "doctorId": email,
                               "firstName": displayName,
                               "lastName": " ", 
+                              "patRec":[],
                             },
                             success: function(){
                                 console.log('successfulll');
                             }
                         });
                     }
-            });
+                else{
+                        console.log(displayName+email);
+                        $.ajax({
+                            method: 'POST',
+                            url: 'http://localhost:3000/api/org.ehr.mtx.Patient',
+                            data: {
+                              "$class": "org.ehr.mtx.Patient",
+                              "patientId": email,
+                              "firstName": displayName,
+                              "lastName": " ",
+                              "medRec": []
+                            },
+                            success: function(){
+                                console.log('Data of patient ported to Blockchain successfully');
+                            }
+                        });
+                    }
+            }); 
             
             })
     </script>
